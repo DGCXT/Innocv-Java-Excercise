@@ -4,16 +4,20 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="user")
 public class UserEntity {
 
 	@Id
+	@GeneratedValue(generator="UUID")
+	@GenericGenerator(name="UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	private UUID id;
 	
 	@Column(name="first_name", nullable=false)
