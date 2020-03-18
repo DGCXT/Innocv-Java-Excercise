@@ -1,1 +1,21 @@
-This is the Java Excercise solution for the Innocv proposed problem.
+## Innocv Java Spring Boot Excercise
+
+This is my solution of the problem presented in the repository    [https://gist.github.com/pjmarchal/2e2ddf1957afa189036b8ab8aa76a558].
+It was built using Java 8 with Spring Boot as the backend framework and JUnit 5 for unit testing.
+I used Maven as the Dependency manager.
+I also added a swagger client to access the API through a UI.
+
+### How to build and launch the application
+Make sure to have maven installed and Java 8 in the PATH variable (and make sure nothing is running on port 8080). 
+Clone this respository and execute the following command.
+
+    mvn spring-boot: run
+
+If you want to try the API, go to 
+
+    http//:localhost:8080/swagger-ui.html
+
+To launch the tests execute
+
+     mvn clean test
+
