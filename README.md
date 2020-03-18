@@ -1,10 +1,10 @@
 ## Innocv Java Spring Boot Excercise
 
-This is my solution of the problem presented in the repository [https://gist.github.com/pjmarchal/2e2ddf1957afa189036b8ab8aa76a558].
-It was built using Java 8 with Spring Boot as the backend framework following the Model-View-Controller pattern and with features such as Global Exception Handling and Entity validation.
-For the unit testing I used JUnit 5 with Mockito BDD.
-For the Data layer, I used a CrudRepository (from SpringBoot)  and an H2 in-memory database without physical persistence.
-I used Maven as the Dependency manager.
+This is my solution of the problem presented in the repository [https://gist.github.com/pjmarchal/2e2ddf1957afa189036b8ab8aa76a558].  
+It was built using Java 8 with Spring Boot as the backend framework following the Model-View-Controller pattern and with features such as Global Exception Handling and Entity validation.  
+For the unit testing I used JUnit 5 with Mockito BDD.  
+For the Data layer, I used a CrudRepository (from SpringBoot)  and an H2 in-memory database without physical persistence.  
+I used Maven as the Dependency manager.  
 I also added a swagger client to access the API through a UI.
 
 ### How to build and launch the application
