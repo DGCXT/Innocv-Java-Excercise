@@ -47,6 +47,12 @@ public class UserDTO {
 	}
 	
 	@Override
+	public String toString()
+	{
+		return "[" + id + ", " + firstName + ", " + lastName + ", " + email + "]";
+	}
+	
+	@Override
 	public boolean equals(Object o)
 	{
 		if (o == this)
