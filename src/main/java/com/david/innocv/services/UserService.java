@@ -58,7 +58,7 @@ public class UserService {
 		return UserDTO.fromUserEntity(userRepository.save(userEntity));
 	}
 	
-	public void deleteUserWithId(String id) throws ResourceNotFoundException
+	public void deleteUser(String id) throws ResourceNotFoundException
 	{
 		if (!userRepository.existsById(UUID.fromString(id)).isPresent())
 			throw new ResourceNotFoundException(String.format("User with id %S not found.", id));

@@ -148,7 +148,7 @@ public class UserServiceTest {
 		.willReturn(Optional.empty());
 		
 		assertThrows(ResourceNotFoundException.class, () -> 
-			userService.deleteUserWithId(wrongUuid)
+			userService.deleteUser(wrongUuid)
 		);
 	}
 }

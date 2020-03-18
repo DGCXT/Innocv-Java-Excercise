@@ -66,9 +66,9 @@ public class UserController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<UserDTO> removeUserById(@PathVariable(value="id") String id) throws ResourceNotFoundException
+	public ResponseEntity<UserDTO> deleteUser(@PathVariable(value="id") String id) throws ResourceNotFoundException
 	{
-		userService.deleteUserWithId(id);
+		userService.deleteUser(id);
 		return new ResponseEntity<UserDTO>(HttpStatus.NO_CONTENT);
 	}
 }
