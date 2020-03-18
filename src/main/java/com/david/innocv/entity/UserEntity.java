@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -21,15 +23,18 @@ public class UserEntity {
 	private UUID id;
 	
 	@Column(name="first_name", nullable=false)
-	@NotBlank
+	@NotBlank(message = "First name is mandatory")
+	@Max(255)
 	private String firstName;
 	
 	@Column(name="last_name", nullable=false)
-	@NotBlank
+	@NotBlank(message = "Last name is mandatory")
+	@Max(255)
 	private String lastName;
 	
 	@Column(unique=true, nullable=false)
-	@NotBlank
+	@NotBlank(message = "Email is mandatory")
+	@Email
 	private String email;
 	
 	public UserEntity() {}

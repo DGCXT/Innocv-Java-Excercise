@@ -2,6 +2,7 @@ package com.david.innocv.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -36,31 +37,31 @@ public class UserController {
 	}
 
 	@GetMapping("/{id}")
-	public UserDTO findById(@PathVariable("id") @NotBlank String id) throws ResourceNotFoundException
+	public UserDTO findById(@NotBlank @PathVariable("id") String id) throws ResourceNotFoundException
 	{
 		return userService.findById(id);
 	}
 
 	@GetMapping("/firstName/{firstName}")
-	public List<UserDTO> findByFirstName(@PathVariable("firstName") @NotBlank String firstName) throws ResourceNotFoundException
+	public List<UserDTO> findByFirstName(@NotBlank @PathVariable("firstName") String firstName) throws ResourceNotFoundException
 	{
 		return userService.findByFirstName(firstName);
 	}
 
 	@GetMapping("/lastName/{lastName}")
-	public List<UserDTO> findByLastName(@PathVariable("lastName") @NotBlank String lastName) throws ResourceNotFoundException
+	public List<UserDTO> findByLastName(@NotBlank @PathVariable("lastName") String lastName) throws ResourceNotFoundException
 	{
 		return userService.findByLastName(lastName);
 	}
 
 	@PostMapping
-	public ResponseEntity<UserDTO> createUser(@RequestBody @NotNull UserDTO user)
+	public ResponseEntity<UserDTO> createUser(@Valid @RequestBody UserDTO user)
 	{	
 		return new ResponseEntity<UserDTO>(userService.createUser(user), HttpStatus.CREATED);	
 	}
 
 	@PutMapping("/{id}")
-	public UserDTO updateUser(@PathVariable("id") @NotNull String id, @RequestBody UserDTO user) throws ResourceNotFoundException
+	public UserDTO updateUser(@NotBlank @PathVariable("id") String id, @Valid @RequestBody UserDTO user) throws ResourceNotFoundException
 	{	
 		return userService.updateUser(id, user);
 	}
