@@ -43,6 +43,15 @@ public class UserService {
 		return users;
 	}
 	
+	public List<UserDTO> findByLastName(String lastName) throws ResourceNotFoundException
+	{
+		List<UserDTO> users = new ArrayList<UserDTO>();
+		userRepository.findByLastName(lastName).forEach(u -> users.add(UserDTO.fromUserEntity(u)));
+		if (users.isEmpty())
+			throw new ResourceNotFoundException(String.format("No user with last name %s was found.", lastName));
+		return users;
+	}
+	
 	public UserDTO createUser(UserDTO userDTO)
 	{
 		UserEntity userEntity = UserDTO.toUserEntity(userDTO);

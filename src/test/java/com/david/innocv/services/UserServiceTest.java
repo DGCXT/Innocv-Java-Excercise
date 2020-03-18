@@ -114,6 +114,19 @@ public class UserServiceTest {
 	}
 	
 	@Test
+	@DisplayName("Find all users with the given last name.")
+	public void testFindByLastName() throws ResourceNotFoundException
+	{
+		given(userRepository.findByLastName(any(String.class))).willReturn(users);
+		
+		List<UserDTO> usersDTO = userService.findByLastName("gomez");
+		assertAll(
+				() -> assertEquals(usersDTO.size(), 1),
+				() -> assertEquals(usersDTO.get(0), davidDTO)
+		);
+	}
+	
+	@Test
 	@DisplayName("Update an user with the given id.")
 	public void testUpdateUserWithId() throws ResourceNotFoundException
 	{

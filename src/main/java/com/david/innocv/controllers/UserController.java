@@ -48,9 +48,9 @@ public class UserController {
 	}
 
 	@GetMapping("/lastName/{lastName}")
-	public void findByLastName(@PathVariable("lastName") @NotBlank String lastName)
+	public List<UserDTO> findByLastName(@PathVariable("lastName") @NotBlank String lastName) throws ResourceNotFoundException
 	{
-		throw new NotYetImplementedException("");
+		return userService.findByLastName(lastName);
 	}
 
 	@PostMapping

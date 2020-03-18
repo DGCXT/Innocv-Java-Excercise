@@ -56,7 +56,6 @@ public class UserControllerTest {
 		liza = new UserDTO(uuidId,"liza", "mish", "liza@mail.com");
 		users = new ArrayList<UserDTO>();
 		users.add(david);
-		users.add(liza);
 	}
 	
 	@Test
@@ -136,6 +135,20 @@ public class UserControllerTest {
 		given(userService.findByFirstName(any(String.class))).willReturn(users);
 		
 		mockMvc.perform(get(findByFirstNameUrl, "david").accept(MediaType.APPLICATION_JSON))
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$[0].firstName").value(david.getFirstName()))
+				.andExpect(jsonPath("$[0].lastName").value(david.getLastName()))
+				.andExpect(jsonPath("$[0].email").value(david.getEmail()));
+	}
+	
+	@Test
+	public void testFindUserByLastName() throws Exception
+	{
+		String findByFirstNameUrl = "/users/lastName/{lastName}";
+		given(userService.findByLastName(any(String.class))).willReturn(users);
+		
+		mockMvc.perform(get(findByFirstNameUrl, "gomez").accept(MediaType.APPLICATION_JSON))
 				.andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$[0].firstName").value(david.getFirstName()))
