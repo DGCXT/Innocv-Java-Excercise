@@ -65,7 +65,7 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	@DisplayName("Test UserService method find all users")
+	@DisplayName("Find all users")
 	public void testFindAll()
 	{
 		given(userRepository.findAll()).willReturn(users);
@@ -78,7 +78,7 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	@DisplayName("Test find user by id")
+	@DisplayName("Find an user by its ID")
 	public void testFindUserById() throws ResourceNotFoundException
 	{
 		given(userRepository.findById(UUID.fromString(uuidId))).willReturn(Optional.of(davidEntity));
@@ -87,6 +87,7 @@ public class UserServiceTest {
 	}
 	
 	@Test
+	@DisplayName("Find an user given an ID not present in the DB.")
 	public void testFindUserByWrongId_expectException()
 	{
 		String wrongUuid = "656855a2-0795-4fea-982c-ea94f82b8829";
@@ -100,7 +101,20 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	@DisplayName("Test update user by id")
+	@DisplayName("Find all users with the given first name.")
+	public void testFindByFirstName() throws ResourceNotFoundException
+	{
+		given(userRepository.findByFirstName(any(String.class))).willReturn(users);
+		
+		List<UserDTO> usersDTO = userService.findByFirstName("david");
+		assertAll(
+				() -> assertEquals(usersDTO.size(), 1),
+				() -> assertEquals(usersDTO.get(0), davidDTO)
+		);
+	}
+	
+	@Test
+	@DisplayName("Update an user with the given id.")
 	public void testUpdateUserWithId() throws ResourceNotFoundException
 	{
 		given(userRepository.save(any(UserEntity.class))).willReturn(davidEntity);
@@ -110,6 +124,7 @@ public class UserServiceTest {
 	}
 	
 	@Test
+	@DisplayName("Update an user with an ID not present in the DB.")
 	public void testUpdateUserWithWrongId_expectException()
 	{	
 		String wrongUuid = "656855a2-0795-4fea-982c-ea94f82b8829";
@@ -124,6 +139,7 @@ public class UserServiceTest {
 	
 	
 	@Test
+	@DisplayName("Delete an user with an ID not present in the DB.")
 	public void testDeleteUserWithWrongId_expectException()
 	{	
 		String wrongUuid = "656855a2-0795-4fea-982c-ea94f82b8829";

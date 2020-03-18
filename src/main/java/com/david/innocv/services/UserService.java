@@ -34,6 +34,15 @@ public class UserService {
 		return UserDTO.fromUserEntity(user.get());
 	}
 	
+	public List<UserDTO> findByFirstName(String firstName) throws ResourceNotFoundException
+	{
+		List<UserDTO> users = new ArrayList<UserDTO>();
+		userRepository.findByFirstName(firstName).forEach(u -> users.add(UserDTO.fromUserEntity(u)));
+		if (users.isEmpty())
+			throw new ResourceNotFoundException(String.format("No user with first name %s was found.", firstName));
+		return users;
+	}
+	
 	public UserDTO createUser(UserDTO userDTO)
 	{
 		UserEntity userEntity = UserDTO.toUserEntity(userDTO);

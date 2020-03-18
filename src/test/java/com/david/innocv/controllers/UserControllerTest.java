@@ -60,7 +60,7 @@ public class UserControllerTest {
 	}
 	
 	@Test
-	public void testGetUserById() throws Exception
+	public void testFindById() throws Exception
 	{		
 		String getUserByIdUrl = "/users/" + uuidId;
 		given(userService.findById(uuidId)).willReturn(david);
@@ -108,7 +108,7 @@ public class UserControllerTest {
 	}
 	
 	@Test
-	public void testGetAllUsers() throws Exception
+	public void testFindAll() throws Exception
 	{
 		String allUsersUrl = "/users";
 		given(userService.findAll()).willReturn(users);
@@ -129,7 +129,21 @@ public class UserControllerTest {
 			   .andExpect(status().isNoContent());
 	}
 	
-	public static String asJsonString(final Object obj) {
+	@Test
+	public void testFindUserByFirstName() throws Exception
+	{
+		String findByFirstNameUrl = "/users/firstName/{firstName}";
+		given(userService.findByFirstName(any(String.class))).willReturn(users);
+		
+		mockMvc.perform(get(findByFirstNameUrl, "david").accept(MediaType.APPLICATION_JSON))
+				.andDo(print())
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$[0].firstName").value(david.getFirstName()))
+				.andExpect(jsonPath("$[0].lastName").value(david.getLastName()))
+				.andExpect(jsonPath("$[0].email").value(david.getEmail()));
+	}
+	
+	private static String asJsonString(final Object obj) {
 	    try {
 	    	ObjectMapper objectMapper = new ObjectMapper();
 	    	objectMapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);

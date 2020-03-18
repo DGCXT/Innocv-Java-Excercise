@@ -30,7 +30,7 @@ public class UserController {
 	UserService userService;
 
 	@GetMapping
-	public List<UserDTO> getAll()
+	public List<UserDTO> findAll()
 	{
 		return userService.findAll();
 	}
@@ -42,9 +42,9 @@ public class UserController {
 	}
 
 	@GetMapping("/firstName/{firstName}")
-	public void findByFirstName(@PathVariable("firstName") @NotBlank String firstName)
+	public List<UserDTO> findByFirstName(@PathVariable("firstName") @NotBlank String firstName) throws ResourceNotFoundException
 	{
-		throw new NotYetImplementedException("");
+		return userService.findByFirstName(firstName);
 	}
 
 	@GetMapping("/lastName/{lastName}")
