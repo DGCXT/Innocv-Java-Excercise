@@ -46,6 +46,17 @@ public class UserDTO {
 		return userEntity;
 	}
 	
+	@Override
+	public boolean equals(Object o)
+	{
+		if (o == this)
+			return true;
+		if (!(o instanceof UserDTO))
+			return false;
+		UserDTO otherUser = (UserDTO) o;
+		return otherUser.getEmail().equals(this.email);
+	}
+	
 	public String getId() {
 		return id;
 	}
