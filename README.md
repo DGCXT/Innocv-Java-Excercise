@@ -23,7 +23,7 @@ To launch the tests execute
 
      mvn clean test
 
-If you want to run it as a docker container follow this steps:  
+If you want to run it as a docker container follow these steps:  
 First build the jar file using the following command.
 
     mvn clean install
