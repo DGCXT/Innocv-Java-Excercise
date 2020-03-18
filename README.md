@@ -7,6 +7,8 @@ For the Data layer, I used a CrudRepository (from SpringBoot)  and an H2 in-memo
 I used Maven as the Dependency manager.  
 I also added a swagger client to access the API through a UI.
 
+(If you find any errors, please let me know)
+
 ### How to build and launch the application
 Make sure to have maven installed and Java 8 in the PATH variable (and make sure nothing is running on port 8080). 
 Clone this respository and execute the following command.
