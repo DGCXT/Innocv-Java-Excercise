@@ -21,3 +21,9 @@ To launch the tests execute
 
      mvn clean test
 
+### Things I would like to add / improve
+There are no Unit tests for the Entity validation annotations. While this exercise is fairly simple, it would be nice to add some tests there.  
+I would like to switch from JUnit assertions to AssertJ assertions.  
+I would like to try Reactive programming with Spring Boot (as soon as I have a bit more time).  
+Dockerizing the application would be nice.  
+
